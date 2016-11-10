@@ -1,4 +1,4 @@
 # Atlas Vehicles Website
-Node/Express/MongoDB site with PassportJS authentication and Gulp asset pipeline
+Node/Express/MongoDB site with PassportJS authentication.
 
-Users require authentication for /classified/ directory. Requests for access are passed via email and approved manually.
+Users require authentication for `views/classified/`. Requests for access are passed via email and approved manually.
