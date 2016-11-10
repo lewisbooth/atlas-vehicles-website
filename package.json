@@ -1,0 +1,33 @@
+{
+  "name": "atlas-vehicles-website",
+  "version": "1.0.0",
+  "description": "Node/Express/MongoDB site with PassportJS authentication and Gulp asset pipeline",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://www.github.com/lewisbooth/atlas-vehicles-website"
+  },
+  "author": "Lewis Booth",
+  "license": "ISC",
+  "dependencies" : {
+    "express" : "latest",           
+    "ejs" : "latest",               
+    "mongoose" : "latest",          
+    "passport" : "latest",         
+    "passport-local" : "latest",    
+    "passport-facebook" : "latest", 
+    "passport-twitter" : "latest",  
+    "passport-google-oauth" : "latest",
+    "connect-flash" : "latest",     
+    "bcrypt-nodejs" : "latest",
+
+    "morgan": "latest",
+    "body-parser": "latest",
+    "cookie-parser": "latest",
+    "method-override": "latest",
+    "express-session": "latest"     
+  }
+}
