@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>Atlas Vehicles</title>
+    <title>Atlas Vehicles | Classified Area</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="atlas.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -25,46 +25,25 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/login"><span class="fa fa-lock"></span> LOG IN</a></li>
+                    <li><a href="/login" class="btn"><span class="fa fa-user"></span> LOGIN</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
     </nav>
 
-
-    <div class="slider-text">
-        <div class="text-center">
-            <h1>When your life depends on the vehicle you drive, you can depend on Atlas.</h1>         
-        </div>     
-    </div>
-    
-    <div class="row home-slider">
-        <img class="img-responsive col-xs-12" src="atlas-home-slider-1-main-building.jpg">
-    </div>
-    
-    <div class="row container-green">
-        <div class="container section">
-            <div class="text-center">
-                <div class="box-yellow-border">
-                    <h2>ENDEAVOUR MRUV-X4.5</h2>
-                </div>
-                <div class="home-mruv-description">
-                    <h3>A new multi-role utility vehicle for emergency services, tactical response, public order and recreation</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="row">
     <div class="container">
-        <div class="col-sm-6">
-            <div class="section">
-                <h1 class="yellow-underline">SUPPORTED BY THE<br />INDUSTRY LEADERS</h1>
-                <p>The unique multi-role design of the Atlas Endeavour isn’t the only thing that makes it stand out from the competition. The universal support of the Worlds Leading defence and technology manufacturers gives the Atlas Endeavour a unbeatable advantage.</p>
-            </div>
-        </div>
-        </div>
+
+    <div class="text-center">
+
+        <h1>Classified</h1>
+        <p>Welcome to the super secret section. You are now on a government watchlist.</p>
+        <p>You are logged in as <strong><%= user.local.email %></strong>.</p>
+
+
+        <a href="/logout" class="btn btn-default"><span class="fa fa-user"></span> Log Out</a>
     </div>
+
+</div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
