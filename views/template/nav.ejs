@@ -1,0 +1,39 @@
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">
+                    <img class="navbar-logo" alt="Atlas Vehicles Logo" src="atlas-logo-cream-horizontal.svg">
+                </a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+
+                    <% if (typeof user !== 'undefined') { %>
+                    <li class="signed-in-nav">Signed in as <span class="signed-in-nav-bold"><%= user.local.email %></span> </li>
+                    <li class="dropdown signed-in-nav-button-highlight">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">PRODUCT INFORMATION <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/classified">Overview</a></li>
+                            <li><a href="/classified">Durability</a></li>
+                            <li><a href="/classified">Industry Support</a></li>
+                            <li><a href="/classified">British Manufacturing</a></li>
+                            <li><a href="/classified">Technical Specifications</a></li>
+                            <li><a href="/classified">Gallery</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/logout"><span class="fa fa-sign-out"></span> SIGN OUT</a></li>
+                    <% } else { %>
+                    <li><a href="/signup"><span class="fa fa-sign-in"></span> REQUEST ACCESS</a></li>
+                    <li><a href="/login"><span class="fa fa-lock"></span> CUSTOMER LOGIN</a></li>
+                    <% } %>
+
+                </ul>
+            </div>
+        </div>
+    </nav>

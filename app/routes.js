@@ -3,8 +3,10 @@ module.exports = function(app, passport) {
     // =====================================
     // HOME PAGE (with login links) ========
     // =====================================
-    app.get('/', function(req, res) {
-        res.render('index.ejs'); // load the index.ejs file
+    app.get('/', isLoggedIn, function(req, res) {
+        res.render('index.ejs', {
+            user : req.user // get the user out of session and pass to template
+        });           
         delete res.session.error;
     });
 
@@ -13,7 +15,6 @@ module.exports = function(app, passport) {
     // =====================================
     // show the login form
     app.get('/login', function(req, res) {
-
         // render the page and pass in any flash data if it exists
         res.render('login.ejs', { message: req.flash('loginMessage') }); 
     });
@@ -26,7 +27,6 @@ module.exports = function(app, passport) {
     // =====================================
     // show the signup form
     app.get('/signup', function(req, res) {
-
         // render the page and pass in any flash data if it exists
         res.render('signup.ejs', { message: req.flash('signupMessage') });
     });
@@ -56,8 +56,9 @@ module.exports = function(app, passport) {
             user : req.user // get the user out of session and pass to template
         });
     });
+    
     app.get('/classified', isLoggedIn, function(req, res) {
-        res.render('classified.ejs', {
+        res.render('classified/overview.ejs', {
             user : req.user // get the user out of session and pass to template
         });
     });
@@ -79,5 +80,5 @@ function isLoggedIn(req, res, next) {
         return next();
 
     // if they aren't redirect them to the home page
-    res.redirect('/');
+    res.render('index.ejs');
 }
