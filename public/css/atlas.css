@@ -95,12 +95,6 @@ h4 {
     left: 0 !important;
 }
 
-@media(min-width:769px) {
-    .dropdown:hover .dropdown-menu {
-        display: block;
-    }
-}
-
 .navbar-default .navbar-nav>li>a {
     color: #ddd;
     background-color: #555;
@@ -121,7 +115,6 @@ h4 {
     background-color: #db9018;
     color: #fff;
 }
-
 .dropdown-menu {
     background-color: #222;
 }
@@ -134,6 +127,17 @@ h4 {
 .navbar-brand {
     width: 197px;
     padding-top: 8px;
+}
+
+.navbar-fixed-top-secondary {
+    margin-top: 50px;
+    background-color: #333;
+    min-height: 10px !important;
+    z-index: 1;
+}
+
+.navbar-fixed-top-secondary > .container > .navbar-collapse > .nav > li {
+    padding: 6px;
 }
 
 .btn-default {
@@ -164,60 +168,6 @@ h4 {
 .btn-default:hover > a {
     color: #333;
     text-decoration: none;
-}
-
-.swiper-container {
-    width: 100%;
-    height: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    background: #333;
-    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    color:#000;
-    margin: 0;
-    padding: 0;
-}
-
-.swiper-slide {
-    text-align: center;
-    font-size: 18px;
-    background: #fff;
-
-    /* Center slide text vertically */
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    -webkit-justify-content: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    align-items: center;
-}
-
-.swiper-slide img {
-    width: 100%;
-}
-
-.swiper-button-next {
-    background-image: url('/slider-next.svg');
-}
-
-.swiper-button-prev {
-    background-image: url('/slider-prev.svg');
-}
-
-.swiper-pagination-bullet {
-    background-color: #fff;
-    opacity: 1;
-}
-
-.swiper-pagination-bullet-active {
-    background-color: #db9018;
 }
 
 .no-padding {
@@ -258,6 +208,10 @@ h4 {
 
 .section-thin {
     padding: 20px 0;
+}
+
+.section-thin-end {
+    padding: 20px 0 50px 0;
 }
 
 .container-green {
@@ -328,7 +282,7 @@ h4 {
 
 .feature-text {
     width: 100%;
-    max-width: 700px;
+    max-width: 680px;
     margin: 0 auto;
 }
 
@@ -352,8 +306,12 @@ footer {
 .overview-header {
     position: absolute;
     color: #222;
-    margin: 0 auto;
+    margin: 10px auto;
     width: 100%;
+}
+
+.overview-header .yellow-underline {
+    margin-bottom: 1rem;
 }
 
 .overview-header > .col-xs-12 {
@@ -375,6 +333,7 @@ footer {
 .brown-block h1 {
     color: #e7e2d7;
     font-size: 1.6rem;
+    letter-spacing: 4px;
 }
 
 .img-responsive {
@@ -388,6 +347,52 @@ footer {
     background-color: #222;
     font-size: 0.9rem;
     padding: 5px 10px 5px 10px;
+}
+
+#gallery {
+    height: 1000px;
+    background-color: #000;
+}
+
+@media(max-width:1368px) {
+
+    #gallery {
+        height: 750px;
+    }
+
+}
+
+@media(max-width:1100px) {
+
+    #gallery {
+        height: 600px;
+    }
+
+}
+
+@media(max-width:992px) {
+
+    .container {
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+        letter-spacing: 4px;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    .h2-large {
+        font-size: 1.8rem;
+        line-height: 2.8rem;
+    }
+
+    .overview-header {
+        padding: 10px 0;
+    }
 }
 
 @media(max-width:767px) {
@@ -445,6 +450,7 @@ footer {
         margin-bottom: 2rem;
     }
 
+
     .box-yellow-border {
         max-width: 90%;
     }
@@ -453,6 +459,11 @@ footer {
         position: relative;
         background-color: #fff;
         padding: 10px 5px 5px 5px !important;
+        margin: 0;
+    }
+
+    .overview-header .yellow-underline {
+        margin-bottom: 2rem;
     }
 
     .overview-header > .col-xs-12 > .text-center > .bold-text {
@@ -465,6 +476,10 @@ footer {
 
     .section-thin {
         padding: 0;
+    }
+    
+    .section-thin-end {
+        padding: 0 0 30px 0;
     }
 
     .slider-text {
@@ -483,6 +498,26 @@ footer {
 
     .img-caption {
         font-size: 1.2rem;
+    }
+
+    #gallery {
+        height: 280px;
+    }
+
+}
+
+@media(min-width:769px) {
+    
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+
+    #one-vehicle-strap {
+        margin-top: -1.2rem;
+    }
+
+    .hutchinson-logo {
+        margin-top: 40px;
     }
 
 }

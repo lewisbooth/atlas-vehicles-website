@@ -15,21 +15,20 @@
                 <ul class="nav navbar-nav navbar-right">
 
                     <% if (typeof user !== 'undefined') { %>
-                    <li class="signed-in-nav">Signed in as <span class="signed-in-nav-bold"><%= user.local.email %></span> </li>
+                    <li class="signed-in-nav">Signed in as: <span class="signed-in-nav-bold"><%= user.local.email %></span> </li>
                     <li class="dropdown signed-in-nav-button-highlight">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">PRODUCT INFORMATION <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="/classified">Overview</a></li>
-                            <li><a href="/classified">Durability</a></li>
-                            <li><a href="/classified">Industry Support</a></li>
-                            <li><a href="/classified">British Manufacturing</a></li>
-                            <li><a href="/classified">Technical Specifications</a></li>
-                            <li><a href="/classified">Gallery</a></li>
+                            <li><a class="page-scroll" href="/classified">Overview</a></li>
+                            <li><a class="page-scroll" href="/classified#gallery">Gallery</a></li>
+                            <li><a class="page-scroll" href="/classified#durability">Durability</a></li>
+                            <li><a class="page-scroll" href="/classified#support">Industry Support</a></li>
+                            <li><a class="page-scroll" href="/classified#british">British Manufacturing</a></li>
                         </ul>
                     </li>
                     <li><a href="/logout"><span class="fa fa-sign-out"></span> SIGN OUT</a></li>
                     <% } else { %>
-                    <li><a href="/signup"><span class="fa fa-sign-in"></span> REQUEST ACCESS</a></li>
+                    <li><a href="/contact"><span class="fa fa-sign-in"></span> REQUEST ACCESS</a></li>
                     <li><a href="/login"><span class="fa fa-lock"></span> CUSTOMER LOGIN</a></li>
                     <% } %>
 

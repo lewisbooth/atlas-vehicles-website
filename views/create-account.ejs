@@ -24,7 +24,7 @@
         <div class="col-sm-6 col-sm-offset-3">
 
             <h1><span class="fa fa-sign-in"></span> Request access</h1>
-            <p>To view more information about our products, please fill in the form and we will get back to you with login information.</p>
+            <p>To view more information about our products, please fill in this form. Please note all fields are required, and you will receive a verification callback to review your requirements.</p>
 
             <!-- show any messages that come back with authentication -->
             <% if (message.length > 0) { %>
@@ -32,28 +32,15 @@
             <% } %>
 
             <!-- LOGIN FORM -->
-            <form action="/signup" method="post" autocomplete="off">
+            <form action="/createaccount" method="post" autocomplete="off">
                 <div class="form-group">
                     <label>Name</label>
-                    <input type="text" class="form-control" name="password" autocomplete="off">
-                </div>
-                <div class="form-group">
-                    <label>Email</label>
                     <input type="text" class="form-control" name="email" autocomplete="off">
                 </div>
                 <div class="form-group">
-                    <label>Contact number</label>
-                    <input type="text" class="form-control" name="phone" autocomplete="off">
+                    <label>Password</label>
+                    <input type="text" class="form-control" name="password" autocomplete="off">
                 </div>
-                <div class="form-group">
-                    <label>Organisation</label>
-                    <input type="text" class="form-control" name="organisation" autocomplete="off">
-                </div>
-                <div class="form-group">
-                    <label>Message</label>
-                    <textarea type="text" class="form-control" name="message" autocomplete="off" rows="5"></textarea>
-                </div>
-
                 <button type="submit" class="btn btn-warning btn-lg">SUBMIT</button>
             </form>
 
