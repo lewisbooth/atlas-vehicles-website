@@ -12,22 +12,23 @@
   },
   "author": "Lewis Booth",
   "license": "ISC",
-  "dependencies" : {
-    "express" : "latest",           
-    "ejs" : "latest",               
-    "mongoose" : "latest",          
-    "passport" : "latest",         
-    "passport-local" : "latest",    
-    "passport-facebook" : "latest", 
-    "passport-twitter" : "latest",  
-    "passport-google-oauth" : "latest",
-    "connect-flash" : "latest",     
-    "bcrypt-nodejs" : "latest",
-
-    "morgan": "latest",
+  "dependencies": {
+    "bcrypt-nodejs": "latest",
     "body-parser": "latest",
+    "connect-flash": "latest",
     "cookie-parser": "latest",
+    "ejs": "latest",
+    "express": "latest",
+    "express-session": "latest",
     "method-override": "latest",
-    "express-session": "latest"     
+    "mongoose": "latest",
+    "morgan": "latest",
+    "node-mailer": "^0.1.1",
+    "nodemailer": "^2.6.4",
+    "passport": "latest",
+    "passport-facebook": "latest",
+    "passport-google-oauth": "latest",
+    "passport-local": "latest",
+    "passport-twitter": "latest"
   }
 }
