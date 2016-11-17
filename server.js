@@ -6,14 +6,11 @@ var port            = process.env.PORT || 8080;
 var path            = require('path');
 var mongoose        = require('mongoose');
 var passport        = require('passport');
-var bcrypt          = require('bcrypt-nodejs');
-var crypto          = require('crypto');
 var flash           = require('connect-flash');
 var morgan          = require('morgan');
 var cookieParser    = require('cookie-parser');
 var bodyParser      = require('body-parser');
 var session         = require('express-session');
-var nodemailer      = require('nodemailer');
 var configDB        = require('./config/database.js');
 
 // configuration ===============================================================
@@ -46,7 +43,7 @@ app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
 // routes ======================================================================
-require('./app/routes.js')(app, passport, nodemailer, bcrypt, crypto); // load our routes and pass in our app and fully configured passport
+require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
 // static files ================================================================
 app.use(express.static(path.join(__dirname, 'public'))); // routes static file requests to /public directory

@@ -105,7 +105,7 @@ module.exports = function(passport) {
                 return done(null, false, req.flash('loginMessage', 'User does not exist')); // req.flash is the way to set flashdata using connect-flash
 
             // if the user is not authenticated (data added when Authenticate button is clicked in email)
-            if (user.local.authenticated == 'false')
+            if (user.local.authenticated == false)
                 return done(null, false, req.flash('loginMessage', 'User not authenticated')); // create the loginMessage and save it to session as flashdata
 
             // if the user is found but the password is wrong
