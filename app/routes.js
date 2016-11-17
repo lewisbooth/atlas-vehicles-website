@@ -46,7 +46,7 @@ module.exports = function(app, passport, nodemailer, bcrypt, crypto) {
         // render the page and pass in any flash data if it exists
         res.render('create-account.ejs', { message: req.flash('signupMessage') });
     });
-
+ 
     // process the signup form
     app.post('/createaccount', passport.authenticate('create-account', {
         successRedirect : '/success', // redirect to the secure profile section
