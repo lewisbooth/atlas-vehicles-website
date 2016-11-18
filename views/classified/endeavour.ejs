@@ -17,6 +17,8 @@
     <link href="https://fonts.googleapis.com/css?family=Abel|Orbitron:400,700|Teko:300,500" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="shortcut icon" href="img/atlas-favicon-300.png">
+
+
 </head>
 
 <body id="page-top">
@@ -53,17 +55,7 @@
             </div>
         </div>
     </nav>
-<!--
-    <nav class="navbar navbar-default navbar-fixed-top navbar-fixed-top-secondary hidden-xs">
-        <div class="container">
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>Overview</li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    -->
+
     <div class="section overview-header row">
         <div class="col-xs-12">
             <div class="text-center">
@@ -77,8 +69,23 @@
         </div>
     </div>    
 
-    <img class="img-responsive" width="100%" src="img/overview-cover-mining.jpg">
-    
+    <div id="endeavour-hero-wrapper">
+        <img class="img-responsive" width="100%" src="img/overview-cover-mining.jpg">
+    </div>
+
+    <script>
+        // Helps stop content jumping on page load
+        var width = document.getElementById('endeavour-hero-wrapper').offsetWidth;
+        var imgHeight = width * 0.66666;
+        document.getElementById('endeavour-hero-wrapper').style.height=imgHeight+"px";
+
+        window.onresize = function() {
+            var width = document.getElementById('endeavour-hero-wrapper').offsetWidth;
+            var imgHeight = width * 0.66666;
+            document.getElementById('endeavour-hero-wrapper').style.height=imgHeight+"px";
+        };
+    </script>
+
     <div id="overview" class="container-white">
         <div class="container section">
             <div class="col-xs-12">
@@ -408,7 +415,7 @@
 
         </div>
     </div>
-
+    
     <!-- Swiper JS -->
     <script src="js/swiper.min.js"></script>
     <!-- Initialize Swiper -->

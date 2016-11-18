@@ -2,8 +2,7 @@
 // CONTACT FORM EMAILER ================
 // ===================================== 
 
-// Creates new user in database with 'authenticated = false' field, then sends an email to admin for them to manually authenticate the user using a URL (see GET /authenticate handler). Once user is authenticated they can log in at /login.
-
+// Creates new user in database with 'authenticated = false' field, then sends an email to the site admin with manual authentication link (see GET /authenticate handler). Once user is manually authenticated they can log in at /login.
 
 var nodemailer      = require('nodemailer');
 var bcrypt          = require('bcrypt-nodejs');
@@ -11,6 +10,10 @@ var crypto          = require('crypto');
 var User            = require('../app/models/user');
 
 module.exports = function contactFormEmailer(req, res, done) {
+
+    // =====================================
+    // SANITIZE INPUTS =====================
+    // ===================================== 
 
     // Function for sanitising inputs (tag removal)
     var tagBody = '(?:[^"\'>]|"[^"]*"|\'[^\']*\')*';
@@ -40,17 +43,24 @@ module.exports = function contactFormEmailer(req, res, done) {
     var sha1 = function(input){
         return crypto.createHash('sha1').update(JSON.stringify(input)).digest('hex')
     }
+
+    var generateHash = function(password) {
+        return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+    };
     
-    // Sanitise
+    // Sanitise form inputs
     var userName            = sanitise(req.body.name);
     var userEmail           = sanitise(req.body.email);
+    var userPassword        = sanitise(req.body.password);
+    var userPasswordHash    = generateHash(userPassword);
     var userPhone           = sanitise(req.body.phone);
     var userOrganisation    = sanitise(req.body.organisation);
     var userRequirements    = sanitise(req.body.message);
     var userID              = sha1(req.body.email);
 
-
-    // ADD TO DATABASE
+    // =====================================
+    // ADD USER TO DATABASE & SEND EMAIL ===
+    // ===================================== 
 
     // check to see if the user trying to login already exists
     User.findOne({ 'local.email' :  userEmail }, function(err, user) {
@@ -58,7 +68,7 @@ module.exports = function contactFormEmailer(req, res, done) {
         if (err)
             return console.log(err);
 
-        // check to see if theres already a user with that email
+        // flash message if user exists
         if (user) {
             req.flash('requestMessage', 'An account with this email address already exists');
             res.render('request-access.ejs', { message: req.flash('requestMessage') });
@@ -74,7 +84,7 @@ module.exports = function contactFormEmailer(req, res, done) {
             newUser.local.organisation  = userOrganisation;
             newUser.local.userID        = userID;
             newUser.local.requirements  = userRequirements;
-            newUser.local.password      = newUser.generateHash('test');
+            newUser.local.password      = userPasswordHash;
             newUser.local.authenticated = 'false';
 
             // save the user
@@ -84,8 +94,8 @@ module.exports = function contactFormEmailer(req, res, done) {
                 return (null, newUser);
             });     
 
-            // Email template        
-            var content =                 
+            // Admin email template        
+            var contentAdmin =                 
                 '<p><b>Name:</b><br>\n\n' + userName + '</p>' +
                 '<p><b>Email:</b><br>\n\n' + userEmail + '</p>' +
                 '<p><b>Tel:</b><br>\n\n' + userPhone + '</p>' +
@@ -96,11 +106,23 @@ module.exports = function contactFormEmailer(req, res, done) {
                 //Generate authentication link from hashed email field
                 '<p><b><a href="http://localhost:8080/authenticate?id=' + userID + '">Authenticate this user</a></b></p>';
 
-            mailOptions = {
+            mailOptionsAdmin = {
                 from: 'Atlas Vehicles<atlasvehiclesquery@gmail.com>', // sender address
-                to: 'lewis.booth@ciconline.co.uk', // list of receivers
-                subject: 'Atlas Vehicles – Access request from\n\n' + req.body.name, // Subject line            
-                html: content
+                to: 'Lewis Booth<lewis.booth@ciconline.co.uk>', // list of receivers
+                subject: 'Atlas Vehicles – Access request from ' + req.body.name, // Subject line            
+                html: contentAdmin
+            };
+
+            // User email template        
+            var contentUser =                 
+                '<h3>Thank you for your interest in Atlas Vehicles.</h3>' +
+                '<p>We will review your details and contact you regarding your query. You will receive a confirmation email when your account is approved.</p>';
+
+            mailOptionsUser = {
+                from: 'Atlas Vehicles<atlasvehiclesquery@gmail.com>', // sender address
+                to: userEmail, // list of receivers
+                subject: 'Atlas Vehicles – Application received for ' + req.body.name, // Subject line            
+                html: contentUser
             };
 
             //Send the mail
@@ -114,16 +136,27 @@ module.exports = function contactFormEmailer(req, res, done) {
                 }
             });
 
-            transporter.sendMail(mailOptions, function(error, info){
+            transporter.sendMail(mailOptionsAdmin, function(error, info){
                 if(error){
-                    console.log('ERROR in authorisation request from: ' + req.body.email + error);
-                    res.redirect('/error');
+                    console.log('ERROR in authorisation request from: ' + req.body.email + error);                    
+                    req.flash('requestMessage', 'Error sending request, please try again');
+                    res.render('request-access.ejs', { message: req.flash('requestMessage') });
                 }
                 
-                console.log('Authorisation request from: ' + req.body.email + info.response);
-                res.redirect('/success');
+                req.flash('successMessage', 'Application received. We will review your details and contact you to review your details.');
+                res.render('request-access.ejs', { success: req.flash('successMessage') });
+
             }); 
-       }
+
+            transporter.sendMail(mailOptionsUser, function(error, info){
+                if(error){
+                    console.log('ERROR in authorisation request from: ' + req.body.email + error);                    
+                    req.flash('requestMessage', 'Error sending request, please try again');
+                    res.render('request-access.ejs', { message: req.flash('requestMessage') });
+                }
+                
+            }); 
+        }
     })
            
 }

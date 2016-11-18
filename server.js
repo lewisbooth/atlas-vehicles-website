@@ -1,5 +1,4 @@
-// set up ======================================================================
-// get all the tools we need
+
 var express         = require('express');
 var app             = express();
 var port            = process.env.PORT || 8080;
@@ -33,6 +32,8 @@ require('./config/passport')(passport); // pass passport for configuration
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser()); // get information from html forms
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.set('view engine', 'ejs'); // set up ejs for templating
 

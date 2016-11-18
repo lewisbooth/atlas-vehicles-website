@@ -14,7 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt-nodejs": "latest",
-    "body-parser": "latest",
+    "body-parser": "^1.15.2",
     "connect-flash": "latest",
     "cookie-parser": "latest",
     "ejs": "latest",

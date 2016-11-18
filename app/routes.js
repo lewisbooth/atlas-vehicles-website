@@ -1,6 +1,7 @@
 module.exports = function(app, passport) {
 
     var contactFormEmailer = require('./contact-form');
+    var authenticateUser = require('./authenticate-user');
 
     // =====================================
     // HOME PAGE (with login links) ========
@@ -34,35 +35,19 @@ module.exports = function(app, passport) {
     // show the contact form
     app.get('/requestaccess', function(req, res) {
         // render the page and pass in any flash data if it exists
-        res.render('request-access.ejs', { message: req.flash('requestMessage') });
+        res.render('request-access.ejs', { message: req.flash('requestMessage'), success: req.flash('successMessage') });
     });
 
     // process the contact form
     app.post('/requestaccess', contactFormEmailer);
 
-    // show success page after user requests access
-    app.get('/success', function(req, res) {
-        res.render('success.ejs');
-    });
-
     // =====================================
     // AUTHENTICATE ACCOUNT ================
     // =====================================
     // authenticate an account from email link
-    app.get('/authenticate', function(req, res) {
-        // render the page and pass in any flash data if it exists
-        res.render('authenticate.ejs', { 
-            user : req.user, 
-            message: req.flash('authenticateMessage') 
-        });
+     app.get('/authenticate', authenticateUser, function(req, res) {
+        res.render('authenticate.ejs');           
     });
- 
-    // process the signup form
-    app.post('/authenticate', passport.authenticate('create-account', {
-        successRedirect : '/success', // redirect to the secure profile section
-        failureRedirect : '/signup', // redirect back to the signup page if there is an error
-        failureFlash : true // allow flash messages
-    }));
 
     // =====================================
     // CLASSIFIED SECTION ==================
