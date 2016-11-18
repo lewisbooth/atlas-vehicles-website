@@ -104,7 +104,7 @@ module.exports = function contactFormEmailer(req, res, done) {
                 '<p><b>User ID:</b><br>\n\n' + userID + '</p>' +
                 
                 //Generate authentication link from hashed email field
-                '<p><b><a href="http://localhost:8080/authenticate?id=' + userID + '">Authenticate this user</a></b></p>';
+                '<p><b><a href="http://www.atlasvehicles.com/authenticate?id=' + userID + '">Authenticate this user</a></b></p>';
 
             mailOptionsAdmin = {
                 from: 'Atlas Vehicles<atlasvehiclesquery@gmail.com>', // sender address
@@ -143,7 +143,7 @@ module.exports = function contactFormEmailer(req, res, done) {
                     res.render('request-access.ejs', { message: req.flash('requestMessage') });
                 }
                 
-                req.flash('successMessage', 'Application received. We will review your details and contact you to review your details.');
+                req.flash('successMessage', 'Application received. We will contact you to review your details.');
                 res.render('request-access.ejs', { success: req.flash('successMessage') });
 
             }); 

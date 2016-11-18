@@ -43,7 +43,7 @@ module.exports = function authenticateUser(req, res, done) {
                     // Send confirmation email to user       
                     var contentUser =                 
                         '<h3>Your account has been authenticated.</h3>' +
-                        '<p>To view more information about our products, please log in <a href="http://localhost:8080/login">here</a>.</p>';
+                        '<p>To view more information about our products, please log in <a href="http://www.atlasvehicles.com/login">here</a>.</p>';
 
                     mailOptionsUser = {
                         from: 'Atlas Vehicles<atlasvehiclesquery@gmail.com>', // sender address
