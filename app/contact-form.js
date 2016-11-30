@@ -108,7 +108,7 @@ module.exports = function contactFormEmailer(req, res, done) {
 
             mailOptionsAdmin = {
                 from: 'Atlas Vehicles<atlasvehiclesquery@gmail.com>', // sender address
-                to: 'Lewis Booth<lewis.booth@ciconline.co.uk>, Robert Pearson<rob@ciconline.co.uk>', // list of receivers
+                to: 'Robert Pearson<rob@ciconline.co.uk>', // list of receivers
                 subject: 'Atlas Vehicles – Access request from ' + req.body.name, // Subject line            
                 html: contentAdmin
             };
